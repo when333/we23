@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🛡️ Safe Coin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="shield.png" />
+
+  <style>
+    /* Fade-in + cursor effect for the typing animation */
+    #safe-heading {
+      display: inline-block;
+      position: relative;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    #safe-heading::after {
+      content: "";
+      position: absolute;
+      right: -8px;
+      width: 2px;
+      height: 1em;
+      background: black;
+      animation: blink 0.7s steps(1) infinite;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    del {
+      color: #555;
+      text-decoration-color: #ef4444;
+      text-decoration-thickness: 2px;
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const rocket = "🚀";
+      const shield = "🛡️";
+      const typingSpeed = 100;
+      const deletingSpeed = 70;
+      const pauseBeforeDelete = 1200;
+
+      // --- Animate page title ---
+      const firstTitle = `${rocket} Safe Moon ${rocket}`;
+      const finalTitle = `${shield} Safe Coin`;
+
+      function typeTitle(text, callback) {
+        let i = 0;
+        const typer = setInterval(() => {
+          document.title = text.substring(0, i + 1);
+          i++;
+          if (i === text.length) {
+            clearInterval(typer);
+            setTimeout(callback, pauseBeforeDelete);
+          }
+        }, typingSpeed);
+      }
+
+      function deleteTitle(callback) {
+        const text = document.title;
+        let i = text.length;
+        const deleter = setInterval(() => {
+          document.title = text.substring(0, i - 1);
+          i--;
+          if (i === 0) {
+            clearInterval(deleter);
+            callback();
+          }
+        }, deletingSpeed);
+      }
+
+      function loopTitle() {
+        typeTitle(firstTitle, () => {
+          deleteTitle(() => {
+            typeTitle(finalTitle, () => {
+              setTimeout(loopTitle, pauseBeforeDelete);
+            });
+          });
+        });
+      }
+      loopTitle();
+
+      // --- Animate the on-page H1 ---
+      const safeHeader = document.getElementById("safe-heading");
+      const firstText = `<del>${rocket} Safe Moon ${rocket}</del>`;
+      const finalText = `${shield} Safe Coin`;
+
+      function typeH1(text, callback) {
+        let i = 0;
+        safeHeader.style.opacity = 1;
+        const typer = setInterval(() => {
+          safeHeader.innerHTML = text.substring(0, i + 1);
+          i++;
+          if (i === text.length) {
+            clearInterval(typer);
+            setTimeout(callback, pauseBeforeDelete);
+          }
+        }, typingSpeed);
+      }
+
+      function deleteH1(callback) {
+        const text = safeHeader.innerHTML;
+        let i = text.length;
+        const deleter = setInterval(() => {
+          safeHeader.innerHTML = text.substring(0, i - 1);
+          i--;
+          if (i === 0) {
+            clearInterval(deleter);
+            callback();
+          }
+        }, deletingSpeed);
+      }
+
+      function loopH1() {
+        typeH1(firstText, () => {
+          deleteH1(() => {
+            typeH1(finalText, () => {
+              setTimeout(loopH1, pauseBeforeDelete);
+            });
+          });
+        });
+      }
+      loopH1();
+    });
+  </script>
+</head>
+
+<body class="min-h-screen bg-gray-50 text-gray-900 antialiased">
+  <!-- Header -->
+  <header class="max-w-6xl mx-auto p-6 flex items-center justify-between">
+    <div class="flex items-center gap-4">
+      <a href="index.html">
+        <img src="shield.png" alt="SAFE logo" class="h-12 w-12 rounded-2xl shadow-lg" />
+      </a>
+      <div>
+        <div class="font-semibold text-lg">$SAFE Coin</div>
+        <div class="text-xs text-gray-500">SafeMoon done Your way — transparent, fair, community-powered.</div>
+      </div>
+    </div>
+    <nav class="flex items-center gap-4">
+      <a href="#about" class="text-sm hover:underline">About</a>
+      <a href="#token" class="text-sm hover:underline">Tokenomics</a>
+      <a href="#socials" class="text-sm hover:underline">Socials</a>
+      <a href="angels.html" class="text-sm hover:underline">Angels</a>
+      <a href="https://x.com/safecoinbnb" target="_blank" rel="noreferrer" class="ml-4 inline-flex items-center gap-2 px-3 py-1.5 border rounded-lg text-sm">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none"><path d="M5 6l14 12M19 6L5 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Follow
+      </a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main class="max-w-6xl mx-auto px-6 pb-16">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center py-12">
+      <div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+          <span id="safe-heading">SAFE</span>
+          <span class="block text-indigo-600 mt-2 text-xl font-medium">
+            The community-first token that fixes SafeMoon’s mistakes
+          </span>
+        </h1>
+
+        <p class="mt-6 text-gray-600 max-w-lg">
+          SAFE is built on the lessons of SafeMoon. Where they failed with transparency, liquidity locks, and sustainability, 
+          we deliver fairness, security, and verifiable trust.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="https://t.me/safecoinbnb" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg border shadow-sm text-sm font-medium">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M22 3L2 12.5l5.5 2.5L11 21l2-6 9-11z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Join Telegram
+          </a>
+          <a href="https://www.tiktok.com/@safecoinbnb" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-black text-white text-sm font-medium shadow">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M16 8.5c-1 0-2-.4-2.8-1.1v6.1A4.5 4.5 0 1 1 9.7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            TikTok
+          </a>
+          <a href="https://x.com/safecoinbnb" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none"><path d="M5 6l14 12M19 6L5 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            X
+          </a>
+        </div>
+
+        <div class="mt-8 text-sm text-gray-500">
+          Fair distribution — LP locked & verifiable. Community-owned from day one.
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center">
+        <div class="w-72 h-72 flex items-center justify-center rounded-3xl shadow-2xl bg-white">
+          <img src="shield.png" alt="SAFE logo" class="h-32 w-32 mx-auto" />
+        </div>
+      </div>
+    </section>
+
+    <hr class="my-8" />
+
+    <!-- About -->
+    <section id="about" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <div class="text-sm text-indigo-600 font-semibold">SafeMoon’s Mistakes</div>
+        <div class="mt-3 text-gray-600 text-sm">
+          SafeMoon promised the moon but failed to deliver. Liquidity wasn’t locked, fees enriched insiders, and centralization created distrust. 
+          Holders were left exposed to rug-pull fears and broken promises.
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <div class="text-sm text-indigo-600 font-semibold">Community First</div>
+        <div class="mt-3 text-gray-600 text-sm">
+          SAFE is designed with fairness at its core. LP from fees is <strong>automatically locked</strong>, not sent to dev wallets. 
+          Fees are transparent and immutable in the contract. The community is in full control.
+        </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow">
+        <div class="text-sm text-indigo-600 font-semibold">🛡️ SAFE Tech 🛡️</div>
+        <div class="mt-3 text-gray-600 text-sm">
+          SAFE isn’t just another token — it’s powered by a liquidity-generating smart contract inspired by SafeMoon’s $17 billion proven mechanics. Every transaction automatically grows the liquidity pool, strengthening the price floor over time, while holders earn passive income through reflection rewards — simply by holding. And with 1% of the total supply sent to the dead wallet, SAFE becomes forever deflationary, making every remaining token increasingly scarce and valuable with each trade.
+        </div>
+      </div>
+    </section>
+
+    <!-- Tokenomics -->
+    <section id="token" class="mt-12">
+      <h2 class="text-xl font-semibold">Tokenomics</h2>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <div class="text-xs text-gray-500">Transaction Fee</div>
+          <div class="mt-2 font-semibold">5%</div>
+          <div class="mt-1 text-xs text-gray-500">2.5% Liquidity Pool • 2.5% Reflections</div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <div class="text-xs text-gray-500">Liquidity</div>
+          <div class="mt-2 font-semibold">Locked & Verifiable</div>
+          <div class="mt-1 text-xs text-gray-500">No more dev wallets stealing LP.</div>
+        </div>
+        <div class="bg-white p-4 rounded-lg shadow-sm">
+          <div class="text-xs text-gray-500">Supply</div>
+          <div class="mt-2 font-semibold">1,000,000,000 SAFE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Socials -->
+    <section id="socials" class="mt-12">
+      <h2 class="text-xl font-semibold">Join the Movement</h2>
+      <p class="text-gray-600 mt-2">Be part of a token that’s built to last. Fair, transparent, and SAFE.</p>
+      <div class="mt-4 flex gap-4 items-center">
+        <a href="https://x.com/safecoinbnb" target="_blank" rel="noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"><path d="M5 6l14 12M19 6L5 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <div class="text-sm font-medium">X</div>
+            <div class="text-xs text-gray-500">@safecoinbnb</div>
+          </div>
+        </a>
+        <a href="https://www.tiktok.com/@safecoinbnb" target="_blank" rel="noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"><path d="M16 8.5c-1 0-2-.4-2.8-1.1v6.1A4.5 4.5 0 1 1 9.7 7" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <div class="text-sm font-medium">TikTok</div>
+            <div class="text-xs text-gray-500">@safecoinbnb</div>
+          </div>
+        </a>
+        <a href="https://t.me/safecoinbnb" target="_blank" rel="noreferrer" class="flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none"><path d="M22 3L2 12.5l5.5 2.5L11 21l2-6 9-11z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div>
+            <div class="text-sm font-medium">Telegram</div>
+            <div class="text-xs text-gray-500">@safecoinbnb</div>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t bg-white mt-12">
+    <div class="max-w-6xl mx-auto p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="text-sm text-gray-600">©️ <script>document.write(new Date().getFullYear())</script> SAFE — Fair, transparent, and community-owned.</div>
+      <div class="flex items-center gap-4">
+        <a href="angels.html" class="text-sm hover:underline">Angels</a>
+        <a href="https://x.com/safecoinbnb" target="_blank" rel="noreferrer" class="text-sm hover:underline">X</a>
+        <a href="https://www.tiktok.com/@safecoinbnb" target="_blank" rel="noreferrer" class="text-sm hover:underline">TikTok</a>
+        <a href="https://t.me/safecoinbnb" target="_blank" rel="noreferrer" class="text-sm hover:underline">Telegram</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
